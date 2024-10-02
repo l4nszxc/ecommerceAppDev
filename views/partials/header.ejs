@@ -10,15 +10,16 @@
 
           <div class="flex items-center space-x-4">
               <select onchange="window.location.href=this.value" class="px-3 py-2 bg-gray-600 text-white rounded hover:bg-gray-700">
-                  <option value="#" selected disabled>Products Category</option>
-                  <option value="/products/category/kids">Kids</option>
-                  <option value="/products/category/teens">Teens</option>
-                  <option value="/products/category/adults">Adults</option>
-                  <option value="/products/category/trends">Trends</option>
-                  <option value="/products/category/customize">Customize</option>
-              </select>
+                <option value="#" selected disabled>Products Category</option>
+                <option value="/products/category/kids">Kids</option>
+                <option value="/products/category/teens">Teens</option>
+                <option value="/products/category/adults">Adults</option>
+                <option value="/products/category/trends">Trends</option>
+                <option value="/products/category/customize">Customize</option>
+            </select>
+          
 
-              <a href="/cart" class="px-3 py-2 hover:bg-gray-700 rounded">Cart</a>
+              <a href="/cart" class="px-3 py-2 hovear:bg-gray-700 rounded">Cart</a>
 
               <% if (locals.nickName) { %>
                 <form action="/logout" method="POST" class="inline" onsubmit="return confirmLogout()">

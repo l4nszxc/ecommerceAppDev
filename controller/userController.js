@@ -12,6 +12,11 @@ const ph = {
         res.render('register');
     },
     userhome: (req, res) => {
+        // Check if the user is an admin and redirect them to the admin dashboard
+        if (req.session.role && req.session.role.toLowerCase() === 'admin') {
+            return res.redirect('/admin/admindashboard');
+        }
+        // Proceed to user homepage if not an admin
         res.render('userhomepage', { nickName: req.session.nickName });
     },
     registerUser: async (req, res) => {
@@ -20,7 +25,7 @@ const ph = {
 
         try {
             // Create a user with default role 'user'
-            await User.create(nickName, firstName, middleName, lastName, gender, email, hashedPassword, 'admin');
+            await User.create(nickName, firstName, middleName, lastName, gender, email, hashedPassword, 'user');
             res.redirect('/login');
         } catch (error) {
             console.error('Registration error:', error);
