@@ -8,6 +8,8 @@ const app = express();
 
 app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+
 
 // Session configuration
 app.use(session({
@@ -17,19 +19,11 @@ app.use(session({
     cookie: { secure: false } // Set to true if using HTTPS
 }));
 
-// Middleware for redirecting unauthorized access
-app.use((req, res, next) => {
-    const adminPages = ['/admin']; // Add more if needed
-    if (!req.session.user && adminPages.includes(req.originalUrl)) {
-        return res.redirect(req.headers.referer || '/login');
-    }
-    next();
-});
 
 // Routes
 app.use('/', userRouter);
 app.use('/admin', adminRouter);
-app.use('/products', productRouter); // Add this to handle product category routing
+app.use('/products', productRouter);
 
 app.listen(3003, () => {
     console.log('Server running at http://localhost:3003');
