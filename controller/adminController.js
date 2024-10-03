@@ -46,7 +46,9 @@ const adminController = {
             console.error('Error inserting product:', err);
             res.status(500).send('Failed to add product');
         }
-    }
+    },
+    
+    
 };
 
 
